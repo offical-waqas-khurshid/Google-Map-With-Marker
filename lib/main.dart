@@ -17,9 +17,6 @@ class MyApp extends StatelessWidget {
 }
 
 
-
-
-
 class MapScreen extends StatelessWidget {
   final MapController mapController = Get.put(MapController());
 
@@ -69,20 +66,17 @@ class MapScreen extends StatelessWidget {
                 (marker) => marker.position == latLng,
           );
 
-          if (tappedMarker != null) {
-            // Show a dialog with branch contact information
-            final tappedBranch = mapController.getBranches(mapController.cities.first)[0];
-            Get.defaultDialog(
-              title: tappedBranch.name,
-              content: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Contact Number: ${tappedBranch.contactNumber}'),
-                  // Add more branch details as needed
-                ],
-              ),
-            );
-          }
+          final tappedBranch = mapController.getBranches(mapController.cities.first)[0];
+          Get.defaultDialog(
+            title: tappedBranch.name,
+            content: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Contact Number: ${tappedBranch.contactNumber}'),
+                Text('Contact Number: ${tappedBranch.contactNumber}'),
+              ],
+            ),
+          );
           },
       ),
     );
