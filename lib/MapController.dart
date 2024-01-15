@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_map/Branch.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -58,14 +59,17 @@ class MapController extends GetxController {
 
   /// Custom Info Window for marker
   void showCustomInfoWindow(Branch branch) {
+    Clipboard.setData(ClipboardData(text: branch.name));
+    Clipboard.setData(ClipboardData(text: branch.contactNumber));
+    Clipboard.setData(ClipboardData(text: branch.address));
     Get.defaultDialog(
       title: branch.name,
       content: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Logo on the left side
               Column(
                 children: [
                   Container(
@@ -78,53 +82,53 @@ class MapController extends GetxController {
                   ),
                 ],
               ),
-              SizedBox(width: 16),
-              // Icon with text on the right side
-              Column(
-                children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.info, // Replace with your desired icon
-                        size: 30,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Your Text Here',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        Icons.info, // Replace with your desired icon
-                        size: 30,
-                        color: Colors.blue,
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Your Text Here',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                ],
+              const SizedBox(width: 10),
+              const Padding(
+                padding: EdgeInsets.only(top: 15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.location_on,
+                          size: 13,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(height: 20,),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            'MFSYS Technologies',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.phone, // Replace with your desired icon
+                          size: 13,
+                          color: Colors.blue,
+                        ),
+                        SizedBox(height: 8),
+                        Padding(
+                          padding: EdgeInsets.only(left: 10.0),
+                          child: Text(
+                            '(051) 41021712',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
 
             ],
           ),
-          // Row(
-          //   children: [
-          //     Column(children: [Image.asset("assets/logo/bank.png")]),
-          //   ],
-          // ),
-          // Column(children: [
-          //
-          // ]),
         ],
       ),
     );
