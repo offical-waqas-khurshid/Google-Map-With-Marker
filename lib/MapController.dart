@@ -40,7 +40,7 @@ class MapController extends GetxController {
             markerId: MarkerId(branch.name),
             position: LatLng(branch.latitude, branch.longitude),
             icon: await BitmapDescriptor.fromAssetImage(
-              ImageConfiguration(devicePixelRatio: 2.5),
+              const ImageConfiguration(devicePixelRatio: 2.5),
               'assets/logo/bank.png', // Replace with your image path
             ),
             onTap: () {
